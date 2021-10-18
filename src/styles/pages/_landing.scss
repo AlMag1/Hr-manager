@@ -1,0 +1,32 @@
+.landing-container {
+  height: 100%;
+  &__photo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(https://source.unsplash.com/random);
+  }
+  .sign-in-container {
+    padding: 0 16px;
+    &__title {
+      font-size: 20px;
+      text-align: center;
+    }
+    &__field {
+      margin: 32px 0px;
+    }
+    &__button {
+      margin: 32px 0 0;
+    }
+  }
+  .sign-in-helpers {
+    margin-top: 32px;
+    font-size: 16px;
+    color: #1976d2;
+    text-decoration: underline;
+    &__title {
+      cursor: pointer;
+      width: fit-content;
+    }
+  }
+}
