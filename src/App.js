@@ -1,5 +1,8 @@
-function App() {
-  return <div className="App">Welcome</div>;
-}
+import React from 'react';
+import ApplicationRouter from 'routes';
+
+const App = () => {
+  return <ApplicationRouter />;
+};
 
 export default App;
