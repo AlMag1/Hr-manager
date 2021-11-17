@@ -5,18 +5,17 @@ import {
   signOut,
 } from 'firebase/auth';
 
-const signUpUser = () => {
+const signUpUser = (email, password) => {
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, 'aris@test.com', '123456')
+  createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      // Signed in
+      // Signed Up
       const user = userCredential.user;
-      console.log(user, 'User');
-      // ...
+      localStorage.setItem('token', `Bearer ${user.accessToken}`);
+      window.location.reload();
     })
     .catch(error => {
       console.log(error);
-      // ..
     });
 };
 
@@ -28,8 +27,6 @@ const signInUser = (email, password) => {
       const user = userCredential.user;
       localStorage.setItem('token', `Bearer ${user.accessToken}`);
       window.location.reload();
-      console.log(user, 'Signed in User');
-      // ...
     })
     .catch(error => {
       console.log(error);
@@ -45,7 +42,7 @@ const signOutUser = () => {
       // Sign-out successful.
     })
     .catch(error => {
-      // An error happened.
+      console.log(error);
     });
 };
 
