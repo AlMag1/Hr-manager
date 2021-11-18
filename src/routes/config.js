@@ -5,12 +5,12 @@ export const routes = [
     name: 'landing',
     path: '/',
     exact: true,
-    component: Landing,
+    Element: Landing,
   },
   {
     name: 'home',
     path: '/home',
     exact: true,
-    component: Home,
+    Element: Home,
   },
 ];
