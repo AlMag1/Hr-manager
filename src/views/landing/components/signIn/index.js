@@ -2,10 +2,14 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useNavigate, useLocation } from 'react-router';
 
 import { signInUser } from 'firebase';
 
-const SignIn = ({ email, password, handleChange }) => {
+const SignIn = ({ email, password, handleChange, auth }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
   return (
     <Grid
       xs={6}
@@ -31,7 +35,12 @@ const SignIn = ({ email, password, handleChange }) => {
       <Button
         variant="contained"
         className="sign-in-container__button"
-        onClick={() => signInUser(email, password)}
+        onClick={() =>
+          auth.signin({
+            payload: { email, password },
+            callback: () => navigate(from, { replace: true }),
+          })
+        }
       >
         Sign In
       </Button>

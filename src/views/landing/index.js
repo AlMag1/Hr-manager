@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 
 import { SignIn } from './components';
+import { Link } from 'react-router-dom';
+import { useAuth } from 'routes';
 
 const Landing = () => {
+  const auth = useAuth();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -22,6 +25,7 @@ const Landing = () => {
         handleChange={handleChange}
         email={state.email}
         password={state.password}
+        auth={auth}
       />
     </Grid>
   );

@@ -19,18 +19,20 @@ const signUpUser = (email, password) => {
     });
 };
 
-const signInUser = (email, password) => {
+const signInUser = async ({ email, password }) => {
   const auth = getAuth();
-  signInWithEmailAndPassword(auth, email, password)
+  const user = await signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       // Signed in
       const user = userCredential.user;
       localStorage.setItem('token', `Bearer ${user.accessToken}`);
-      window.location.reload();
+      return user;
+      // window.location.reload();
     })
     .catch(error => {
       console.log(error);
     });
+  return user;
 };
 
 const signOutUser = () => {
@@ -38,7 +40,7 @@ const signOutUser = () => {
   signOut(auth)
     .then(() => {
       localStorage.removeItem('token');
-      window.location.reload();
+      // window.location.reload();
       // Sign-out successful.
     })
     .catch(error => {
