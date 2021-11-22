@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Landing } from 'views';
+
 import { AuthProvider, RequireAuth } from 'utils';
 import { Layout } from 'components';
+import { routes } from './config';
 
 const AppRouter = () => {
   return (
@@ -10,15 +11,21 @@ const AppRouter = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<Landing />} />
-            <Route
-              path="/home"
-              element={
-                <RequireAuth>
-                  <Home />
-                </RequireAuth>
-              }
-            />
+            {routes.map(({ path, requireAuth, Element }, index) => (
+              <Route
+                key={index}
+                path={path}
+                element={
+                  requireAuth ? (
+                    <RequireAuth>
+                      <Element />
+                    </RequireAuth>
+                  ) : (
+                    <Element />
+                  )
+                }
+              />
+            ))}
           </Route>
         </Routes>
       </BrowserRouter>
