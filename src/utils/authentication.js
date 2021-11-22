@@ -4,11 +4,11 @@ import { signInUser, signOutUser } from 'firebase';
 
 let AuthContext = React.createContext(null);
 
-function useAuth() {
+const useAuth = () => {
   return React.useContext(AuthContext);
-}
+};
 
-function AuthProvider({ children }) {
+const AuthProvider = ({ children }) => {
   let [user, setUser] = React.useState(null);
 
   let signin = async ({ payload, callback }) => {
@@ -23,9 +23,9 @@ function AuthProvider({ children }) {
   let value = { user, signin, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
+};
 
-function RequireAuth({ children }) {
+const RequireAuth = ({ children }) => {
   const auth = useAuth();
   const token = localStorage.getItem('token');
   const location = useLocation();
@@ -40,6 +40,6 @@ function RequireAuth({ children }) {
   }
 
   return children;
-}
+};
 
 export { useAuth, AuthProvider, RequireAuth };
