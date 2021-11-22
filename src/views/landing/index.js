@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
+import { Navigate } from 'react-router-dom';
 
 import { SignIn } from './components';
-import { Link } from 'react-router-dom';
-import { useAuth } from 'routes';
+import { useAuth } from 'utils';
 
 const Landing = () => {
   const auth = useAuth();
+  const token = localStorage.getItem('token');
+  const isSignedIn = auth.user || token;
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -18,7 +20,9 @@ const Landing = () => {
       [name]: value,
     });
   };
-  return (
+  return isSignedIn ? (
+    <Navigate to="/home" replace={true} />
+  ) : (
     <Grid container className="landing-container">
       <Grid item xs={6} className="landing-container__photo" />
       <SignIn

@@ -2,14 +2,11 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useNavigate, useLocation } from 'react-router';
-
-import { signInUser } from 'firebase';
+import { useNavigate } from 'react-router';
 
 const SignIn = ({ email, password, handleChange, auth }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const to = '/home';
   return (
     <Grid
       xs={6}
@@ -38,7 +35,7 @@ const SignIn = ({ email, password, handleChange, auth }) => {
         onClick={() =>
           auth.signin({
             payload: { email, password },
-            callback: () => navigate(from, { replace: true }),
+            callback: () => navigate(to, { replace: true }),
           })
         }
       >
