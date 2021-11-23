@@ -74,8 +74,7 @@ const Layout = () => {
       ) : (
         <Outlet />
       )}
-
-      <div style={{ background: 'orange' }}>footer</div>
+      {isSignedIn && <div style={{ background: 'orange' }}>footer</div>}
     </div>
   );
 };
