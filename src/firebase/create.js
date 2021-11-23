@@ -6,6 +6,7 @@ const addUser = async (collection, documentId, name, lastname, sex) => {
     name,
     lastname,
     sex,
+    admin: true, // @todo Need to be changed while create user ui is ready.
   });
 };
 

@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
+import { addUser } from './create';
 
 const signUpUser = (email, password) => {
   const auth = getAuth();
@@ -11,8 +12,7 @@ const signUpUser = (email, password) => {
     .then(userCredential => {
       // Signed Up
       const user = userCredential.user;
-      localStorage.setItem('token', `Bearer ${user.accessToken}`);
-      window.location.reload();
+      addUser('users', user.uid, 'Aris', 'Alexopoulos', 'male');
     })
     .catch(error => {
       console.log(error);

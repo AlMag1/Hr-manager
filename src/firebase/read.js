@@ -9,7 +9,7 @@ import {
 } from 'firebase/firestore';
 
 const getDocument = async () => {
-  const docRef = doc(db, 'cities', 'SF');
+  const docRef = doc(db, 'users', 'P9a2gF4dkDduT39uQKUWoMLJtCD2');
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
