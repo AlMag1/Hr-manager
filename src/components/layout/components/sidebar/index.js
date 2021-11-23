@@ -21,7 +21,7 @@ const Sidebar = ({ open, setOpen, DrawerHeader, Drawer }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', height: '100%' }}>
+    <Box id="sidebar" className="sidebar-container">
       <CssBaseline />
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
@@ -43,14 +43,7 @@ const Sidebar = ({ open, setOpen, DrawerHeader, Drawer }) => {
           </ListItem>
         </List>
       </Drawer>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          height: '100%',
-        }}
-      >
+      <Box id="outlet-components-wrapper" className="outlet-container">
         <DrawerHeader />
         <Outlet />
       </Box>
